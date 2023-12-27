@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./ToDOListAdd.css"; // Import your custom CSS file for styling
 
-export default function ToDOListAdd({ TodoList, deleteI, checke}) {
+export default function ToDOListAdd({ TodoList, deleteI, checked }) {
   const handleDelete = (id) => {
     toast.success("Deleted Successfully");
     deleteI(id);
   };
-  const HandelCheckbox = (id)=>{
-    checke(id)
-  }
 
   return (
     <div>
-      
       {TodoList.map((ele) => (
         <div
-          className="flex items-center justify-between pt-2 gap-1  w-full"
+          className={`flex items-center justify-between pt-2 gap-1 w-full ${
+            ele.checked ? "underline" : "" // Apply 'underline' class if checked
+          }`}
           key={ele.id}
         >
-          <input type="checkbox" onChange={() => HandelCheckbox(ele.id)} checked={ele.checked}/>
-          <p className={`text-left  w-2/3 capitalize ${ele.checked ? 'line-through':''}`}>{ele.text}</p>
+          <input
+            type="checkbox"
+            checked={ele.checked}
+            onChange={() => checked(ele.id)}
+          />
+          <p className="text-left w-2/3 capitalize">{ele.text}</p>
           <button
             className="bg-black text-slate-200 w-16 text-center rounded-sm cursor-pointer"
             onClick={() => handleDelete(ele.id)}

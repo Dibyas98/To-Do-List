@@ -22,6 +22,9 @@ export default function Insert({ submit }) {
 
   return (
     <div>
+      <h1 className="text-4xl font-semibold pb-5  text-center">
+      Grocery Bud
+      </h1>
       <input
         type="text"
         value={inputData}
